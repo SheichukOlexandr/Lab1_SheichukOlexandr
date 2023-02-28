@@ -152,6 +152,51 @@ void secondTask()
 
 }
 
+double triangle_area(double x1, double y1, double x2, double y2, double x3, double y3) {
+    return abs(x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+}
+
+
+bool point_inside_triangle(double x, double y, double x1, double y1, double x2, double y2, double x3, double y3) {
+    double area = triangle_area(x1, y1, x2, y2, x3, y3);
+    double area1 = triangle_area(x, y, x2, y2, x3, y3);
+    double area2 = triangle_area(x1, y1, x, y, x3, y3);
+    double area3 = triangle_area(x1, y1, x2, y2, x, y);
+    return (area == area1 + area2 + area3);
+}
+
+struct Dots
+{
+    double x;
+    double y;
+};
+
+int thirdTask() {
+    double x1, y1, x2, y2, x3, y3;
+    cout << "Enter the coordinates of the vertices of the triangle (xA yA xB yB xC yC): ";
+    cin >> x1 >> y1 >> x2 >> y2 >> x3 >> y3;
+    int n = 0;
+    int m = 2;
+    cout << "Enter the number of points in the set: ";
+    cin >> n;
+    int count = 0;
+    Dots* dotsArray = new Dots[n];
+    for (size_t i = 0; i < n; i++)
+    {
+        cout << "dots #" << i + 1 << " x coordinate -> ";
+        cin >> dotsArray[i].x;
+        cout << "dots #" << i + 1 << " y coordinate -> ";
+        cin >> dotsArray[i].y;
+    }
+    for (size_t i = 0; i < n; i++)
+    {
+        if (point_inside_triangle(dotsArray[i].x, dotsArray[i].y, x1, y1, x2, y2, x3, y3))
+            count++;
+    }
+    cout << "Number of points belonging to the triangle: " << count << endl;
+    return 0;
+}
+
 int main()
 {
     int flag = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
