@@ -114,6 +114,43 @@ void firstTask()
 
 }
 
+void secondTask()
+{
+    int length = 0;
+    int* Arr = EnterTypeMenu(length);
+    bool Status = false;
+    int min = 9999999999;
+    int minInc = 0;
+    for (size_t i = 0; i < length; i++)
+    {
+        if (Status)
+        {
+            if (Arr[i] > 0 && Arr[i] % 2 == 0)
+            {
+                if (min > Arr[i])
+                {
+                    min = Arr[i];
+                    minInc = i;
+                }
+            }
+        }
+        else
+            if (Arr[i] < 0)
+                Status = true;
+    }
+    CoutArray(Arr, length);
+    if (minInc == 0)
+    {
+        cout << "No elements were found that satisfy the conditions of the problem!!!" << endl;
+    }
+    else
+    {
+        cout << "Minimun positive even element -> " << min << endl;
+        cout << "Position of minimum element -> " << minInc + 1 << endl;
+    }
+    delete[] Arr;
+
+}
 
 int main()
 {
