@@ -98,12 +98,63 @@ int* EnterTypeMenu(int& length)
     }
 }
 
+void firstTask()
+{
+    int length = 0;
+    int* Arr = EnterTypeMenu(length);
+    for (size_t i = 0; i < length; i++)
+    {
+        if (length / 2 >= i)
+            Arr[i] *= 2;
+        else
+            Arr[i] *= 3;
+    }
+    CoutArray(Arr, length);
+    delete[] Arr;
+
+}
+
 
 int main()
 {
     int flag = _CrtSetDbgFlag(_CRTDBG_REPORT_FLAG);
     flag |= _CRTDBG_LEAK_CHECK_DF;
     _CrtSetDbgFlag(flag);
+    while (true)
+    {
+        int input;
+        cout << "MAIN MENU: " << endl;
+        cout << "1. firstTask" << endl;
+        cout << "2. secondTask" << endl;
+        cout << "3. thirdTask" << endl;
+        cout << "4. EXIT" << endl;
+        cout << "Selection: ";
+        cin >> input;
+        system("cls");
+        switch (input) {
+        case 1:
+            firstTask();
+            system("pause");
+            system("cls");
+            break;
+        case 2:
+            secondTask();
+            system("pause");
+            system("cls");
+            break;
+        case 3:
+            thirdTask();
+            system("pause");
+            system("cls");
+            break;
+        case 4:
+            return 0;
+        default:
+            MessageBox(NULL, L"Would you please look carefully at the menu, sir, and see that there are only three items. Would you be so kind as to enter everything correctly?", L"The most upstanding citizen", MB_ICONERROR);
+            system("cls");
+            break;
+        }
+    }
 
     system("pause");
     return 0;
